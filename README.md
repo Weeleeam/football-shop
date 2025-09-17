@@ -20,3 +20,9 @@ d. Halaman form dapat dibuat dengan membuat file html baru di tempat yang sama d
 e. Sama seperti pembuatan halaman form, saya membuat file html baru yang bernama product_detail dan mengisinya deng kode yang akan menampilkan berbagai detail tentang produk sesuai dengan yang telah ditambahkan sebelumnya 
 
 6. Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan? tidak ada
+
+JSON
+![alt text](<Screenshot 2025-09-16 223436-2.png>)
+
+XML
+![alt text](<Screenshot 2025-09-16 223414.png>)
