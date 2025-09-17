@@ -21,8 +21,4 @@ e. Sama seperti pembuatan halaman form, saya membuat file html baru yang bernama
 
 6. Apakah ada feedback untuk asdos di tutorial 2 yang sudah kalian kerjakan? tidak ada
 
-JSON
-![alt text](<Screenshot 2025-09-16 223436-2.png>)
-
-XML
-![alt text](<Screenshot 2025-09-16 223414.png>)
+link screenshot: https://drive.google.com/drive/folders/1r_XS3FNCj4Pq128NCe78zAFkNWsEUPgP?usp=sharing 
