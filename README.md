@@ -41,8 +41,45 @@ secara default, cookies tidak aman karena menyimpan data pada browser yang bisa 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 a. Mengimport library yang sesuai, membuat fungsi baru pada views.py yaitu register, dan membuat file html register untuk menampilkan dan menjalankan proses register akun
 b. Membuat fungsi login pada views.py dan membuat file html login untuk menampilkan serta menjalankan proses login
-c. Memodifikasi file main.html dnegan menambahkan button logout yang akan mengalihkan ke tampilan login\
+c. Memodifikasi file main.html dnegan menambahkan button logout yang akan mengalihkan ke tampilan login
 d. Menambahkan path yang sesuai untuk fungsi-fungsi yang telah dibuat seperti register, login, dan logout pada urls.py di urlpatterns
 e. Mengimport decorator login_required dan menambahkannya pada beberapa fungsi yang membutuhkan akses untuk menampilkannya
 f. Mendaftarkan cookie last_login pdad respone dan menambahkannya pada variabel context, kemudian mengubah fungsi logout agar bisa menghapus cookie last_login setelah logout
 g. Menghubungkan model Product dengan user dengan cara menambahkan library yang sesuai dan menambahkan field user pada model Product agar setiap produk yang ditambahkan mempunyai hubungan atau terikat dengan user yang menambahkannya
+
+TUGAS 5:
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Browser akan menentukan pengambilan CSS selector berdasarkan urutan prioritas yang disebut spesifisitas, dimana CSS selector dengan skor spesifisitas tertinggi akan diambil dahulu. Urutannya adalah:
+a. Inline styles
+b. ID Selector
+c. Class, Attribute, dan Pseudo-class Selectors
+d. Element dan Pseudo-element Selectors
+terdapat 1 lagi yaitu important yang memiliki prioritas paling tinggi namun penggunaannya harus dihindari
+
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design, serta jelaskan mengapa!
+User experience dan penjangkauan audines menjadi alasan mengapa responsive design sangat penting. Pengalaman pengguna yang sering berganti perangkat dalam mengakses situs akan membuat situs yang tidak responsif sulit digunakan. Selain itu responsive design memungkinkan kita menjangkau audiens atau pengguna dengan perangkat apapun. Contoh aplikasi yang sudah menerapkan responsive design adalah Tokopedia dan yang belum adalah SIAK-NG. Jika kita mmengakses tokopedia dari berbagai perangkat, tampilan yang ada sudah disesuaikan dengan perangkat yang kita pakai. Sedangkan SIAK-NG jika kita mengaksesnya melalui perangkat mobile seperti handphone, tampilan yang ditunjukkan tidak sesuai jadi kita perlu menzoom untuk menekan beberapa button yang ukurannya kecil.
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin berfungsi untuk mengatur jarak antara elemen/konten di luar border.
+Border berfungsi sebagai garis batas visual dari suatu elemen.
+Padding berfungsi untuk mengatur jarak antara elemen/konten dengan garis batasnya.
+Contoh Implementasi:
+padding: 20px ---> memberikan ruang untuk konten sebesar 20px
+border: 1px ---> menambahkan garis batas 1px
+margin: 30px ---> memberikan jarak antara konten dengan konten yang lainnya sebesar 30px
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya
+flex box drancang untuk menata, meratakan, dan mendistribusikan ruang di antara item-item dalam sebuah kontainer, baik secara horizontal maupun vertikal, tetapi tidak keduanya sekaligus. Kegunaannya untuk mengatur antar (baris atau kolom) komponen yang digunakan.
+grid layout dirancang untuk mengatur tata letak halaman yang lebih kompleks. Kegunaannya untuk mengatur konten-konten yang berada pada halaman.
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+a. Membuat fungsi baru pada views.py yaitu edit_product dan delete_product untuk mnegedit dan menghapus product yang dibuat
+b. Membuat file html baru yaitu edit_product.html dan mengisinya dengan kode yang sesuai untuk mengatur tampilan saat edit produk, lalu menambahkan path yang sesuai pada urls.py untuk fungsi edit dan delete
+c. Memodifikasi fungsi main.html pada bagian loop list product dengan menambahkan button edit dan delete.
+d. Menambahkan script cdn tailwind di bagian head pada base.html
+e. Membuat navigation bar dengan membuat file html baru pada direktori yang sama dengan base.html dan menambahkan navbar pada main.html
+f. Menambahkan middleware WhiteNoise dan mengkonfigurasikan variabel STATIC_ROOT, STATICFILES_DIRS, dan STATIC_URL pada settings.py
+g. Membuat file baru yaitu global.css pada direktori static/css/ dan folder baru yaitu image pada direktori static/.
+h. Mengkonfigurasikan global.css agar tampilan form yang memiliki class form-style dan membuat semua input memiliki lebar penuh, padding, border abu-abu, dan sudut melengkung.
+i. Melalukan styling pada halaman home dan membuat file html baru pada direktori templates yang akan menampilkan card product sekaligus menstylingnya
+j. Melakukan styling pada halaman login, register, create_product, edit_product, dan detail_product
