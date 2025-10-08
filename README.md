@@ -83,3 +83,27 @@ g. Membuat file baru yaitu global.css pada direktori static/css/ dan folder baru
 h. Mengkonfigurasikan global.css agar tampilan form yang memiliki class form-style dan membuat semua input memiliki lebar penuh, padding, border abu-abu, dan sudut melengkung.
 i. Melalukan styling pada halaman home dan membuat file html baru pada direktori templates yang akan menampilkan card product sekaligus menstylingnya
 j. Melakukan styling pada halaman login, register, create_product, edit_product, dan detail_product
+
+TUGAS 6:
+1. Apa perbedaan antara synchronous request dan asynchronous request?
+Perbedaannya terletak pada cara kerjanya yaitu, synchronous saat mengirim request browser akan berhenti sehingga pengguna tidak bisa melakukan apa apa sampai server mengirimkan respone secara penuh. Sedangkan asynchronous bekerja di "belakang" browser dimana pengguna tetap bisa berinteraksi dengan browser karena saat browser menerima respon, fungsi untuk menghandle data dari respon tersebut akan dijalankan dan memperbarui bagian tertentu pada halaman.
+
+2. Bagaimana AJAX bekerja di Django (alur request–response)?
+a. Pengguna melakukan aksi
+b. Terdapat eventlistener yang terpicu lalu javascript mengirim request ke URL tertentu di Django
+c. Ketika url yang dituju cocok dengan suatu path yang mengarahkan request ke fungsi pada views.py
+d. Dari views.py akan memproses request dan mengirimkan data dalam bentuk json yang ditujukan pada javascript di browser
+e. Javascript pada browser melakukan manipulasi DOM yang akan mengupdate halaman
+
+3. Apa keuntungan menggunakan AJAX dibandingkan render biasa di Django?
+a. Interaksi pengguna dengan aplikasi terasa lebih cepat, mulus, dan responsif
+b. Mengurangi beban server
+c. Data yang ditransfer berukuran kecil yang memmungkinakan peningkatan performa 
+
+4. Bagaimana cara memastikan keamanan saat menggunakan AJAX untuk fitur Login dan Register di Django?
+a. Penggunaan CSRF Protection yang merupakan perlindungan bawaan Django terhadap Cross-Site Request Forgery
+b. Melakukan validasi ulang semua input dalam view Django Anda menggunakan Django Forms atau serializer
+c. Menggunakan koneksi HTTPS (SSL/TLS) untuk mengenkripsi data yang dikirim antara pengguna dan server untuk mencegah pihak ketiga mengintip data sensitif seperti password
+
+5. Bagaimana AJAX mempengaruhi pengalaman pengguna (User Experience) pada website?
+Interaksi yang terasa cepat, mulus, dan responsif membuat pengguna bisa melakukan banyak hal tanpa terhambat oleh loading halaman selain itu, waktu tunggu yang dirasa pengguna juga berkurang jika sedang melakukan aksi. AJAX juga memungkinkan update konten secara langsung yang memungkinkan pengguna mengakses sesuatu yang baru seperti berita baru, produk baru, dll.

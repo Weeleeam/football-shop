@@ -15,63 +15,43 @@
             </a>
         </div>
         
-        <article class="bg-white rounded-lg border border-gray-200 overflow-hidden">
-            
+        <article id="product-details" class="bg-white rounded-lg border border-gray-200 overflow-hidden hidden">
             <div class="p-6 sm:p-8 md:flex md:gap-8">
 
-                <div class="md:w-1/3 mb-6 md:mb-0">
-                    {% if product.thumbnail %}
-                        <img src="{{ product.thumbnail }}" 
-                             alt="{{ product.title }}" 
-                             class="w-full h-auto object-cover rounded-lg">
-                    {% endif %}
+                <div id="product-image-container" class="md:w-1/3 mb-6 md:mb-0">
+                    <img id="product-thumbnail" src="" alt="" class="w-full h-auto object-cover rounded-lg">
                 </div>
 
                 <div class="md:w-2/3">
-                    <div class="flex flex-wrap items-center gap-2 mb-4">
-                        <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-orange-600 text-white">
-                            {{ product.get_category_display }}
-                        </span>
-                        {% if product.is_featured %}
-                            <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800">
-                                Featured
-                            </span>
-                        {% endif %}
-                        {% if product.is_product_hot %}
-                            <span class="inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-red-100 text-red-800">
-                                Hot
-                            </span>
-                        {% endif %}
-                        <span>{{ product.product_views }} views</span>
+                    <div id="product-badges" class="flex flex-wrap items-center gap-2 mb-4">
+                        </div>
+                    
+                    <h1 id="product-name" class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
+                        </h1>
+                    
+                    <div class="my-4 border-b-2 border-gray-200 pb-4">
+                        <h1 class="text-3xl sm:text-3xl font-bold text-gray-900 leading-tight mb-4">
+                            <span id="product-price">
+                                </span> 
+                        </h1>
                     </div>
                     
-                    <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                        {{ product.name }}
-                    </h1>
-                    <div class="my-4 border-b-2 border-gray-200 pb-4">
-                    <h1 class="text-3xl sm:text-3xl font-bold text-gray-900 leading-tight mb-4">
-                        <span>Rp.{{ product.price|intcomma }} </span>
-                    </h1>
-                    </div>
-                    <span> {{ product.description }} </span>
+                    <span id="product-description" class="block mb-4">
+                        </span>
+                    
                     <div class="prose prose-lg max-w-none">
-                        <div class="text-gray-700 leading-relaxed whitespace-pre-line text-base sm:text-lg">
-                            {{ product.content }}
-                        </div>
+                        <div id="product-content" class="text-gray-700 leading-relaxed whitespace-pre-line text-base sm:text-lg">
+                            </div>
                     </div>
                 </div>
-
             </div>
-            
+
             <div class="border-t border-gray-200 p-6 sm:p-8 bg-gray-50">
                 <div class="flex items-center justify-between">
                     <div>
                         <div class="font-medium text-gray-900">
-                            {% if product.user %}
-                                <p>Store: {{ product.user.username }}</p>
-                            {% else %}
-                                <p>Store: Unknown</p>
-                            {% endif %}
+                            <p id="product-user">
+                                </p>
                         </div>
                     </div>
                 </div>
@@ -79,4 +59,88 @@
         </article>
     </div>
 </div>
+
+<script>
+const PRODUCT_ID = "{{ product.id }}";
+const PRODUCT_DETAIL_ENDPOINT = `{% url 'main:show_json_by_id' '00000000-0000-0000-0000-000000000000' %}`.replace('00000000-0000-0000-0000-000000000000', PRODUCT_ID);
+
+const productDetailsContainer = document.getElementById('product-details');
+const loadingIndicator = document.querySelector('.max-w-6xl.mx-auto');
+const errorMessageContainer = document.querySelector('.max-w-6xl.mx-auto'); 
+const imageContainer = document.getElementById('product-image-container');
+const thumbnail = document.getElementById('product-thumbnail');
+const badgesContainer = document.getElementById('product-badges');
+const productName = document.getElementById('product-name');
+const productPrice = document.getElementById('product-price');
+const productDescription = document.getElementById('product-description');
+const productContent = document.getElementById('product-content');
+const productUser = document.getElementById('product-user');
+
+function renderProduct(product) {
+    document.title = `${product.name} - El Bola Shop`;
+    productName.textContent = product.name;
+    productPrice.textContent = `Rp. ${product.price.toLocaleString('id-ID')}`;
+    productDescription.textContent = product.description;
+    productContent.textContent = product.content;
+    productUser.textContent = `Store: ${product.user_username || 'Unknown'}`;
+
+    if (product.thumbnail) {
+        thumbnail.src = product.thumbnail;
+        thumbnail.alt = product.name;
+        imageContainer.classList.remove('hidden');
+    } else {
+        imageContainer.classList.add('hidden');
+    }
+
+    badgesContainer.innerHTML = ''; 
+
+    const categoryBadge = document.createElement('span');
+    categoryBadge.className = 'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-orange-600 text-white';
+    categoryBadge.textContent = product.category || 'Uncategorized';
+    badgesContainer.appendChild(categoryBadge);
+
+    if (product.is_featured) {
+        const featuredBadge = document.createElement('span');
+        featuredBadge.className = 'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-yellow-100 text-yellow-800';
+        featuredBadge.textContent = 'Featured';
+        badgesContainer.appendChild(featuredBadge);
+    }
+
+    if (product.is_product_hot) {
+        const hotBadge = document.createElement('span');
+        hotBadge.className = 'inline-flex items-center px-3 py-1 rounded-md text-xs font-medium bg-red-100 text-red-800';
+        hotBadge.textContent = 'Hot';
+        badgesContainer.appendChild(hotBadge);
+    }
+    
+    const viewsBadge = document.createElement('span');
+    viewsBadge.textContent = `${product.product_views} views`;
+    badgesContainer.appendChild(viewsBadge);
+}
+
+async function loadProductDetail() {
+    const tempLoading = document.createElement('div');
+    tempLoading.className = 'text-center p-12';
+    tempLoading.innerHTML = '<p>Loading product details...</p>';
+    loadingIndicator.appendChild(tempLoading);
+
+    try {
+        const response = await fetch(PRODUCT_DETAIL_ENDPOINT);
+        if (!response.ok) {
+            throw new Error('Failed to fetch product detail');
+        }
+        const productData = await response.json();
+        tempLoading.remove();
+        renderProduct(productData);
+        productDetailsContainer.classList.remove('hidden');
+
+    } catch (error) {
+        console.error('Error loading product detail:', error);
+        tempLoading.remove();
+        errorMessageContainer.innerHTML = '<p class="text-center text-red-500 p-12">Failed to load product details. Please try again later.</p>';
+    }
+}
+
+loadProductDetail();
+</script>
 {% endblock content %}
